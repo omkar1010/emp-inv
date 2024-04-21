@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 const Category = () => {
     const [category, setCategory] = useState([])
+
+
     useEffect(()=>{
    axios.get('http://localhost:3000/auth/category')
    .then(result =>{
@@ -17,6 +19,8 @@ if(result.data.Status) {
     console.log(err)
    })
     },[])
+
+    
   return (
     <div className='px-5 mt-3 '>
    <div className='d-flex justify-content-center'>
