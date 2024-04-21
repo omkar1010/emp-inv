@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
   const [employee, setEmployee] = useState({
@@ -13,6 +13,7 @@ const AddEmployee = () => {
     image: "",
   });
   const [category, setCategory] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -31,9 +32,32 @@ const AddEmployee = () => {
 
 
 const handleSubmit = (e) => {
+
   e.preventDefault()
-  axios.post('http://localhost:3000/auth/add_employee', employee)
-  .then(result => console.log(result.data))
+
+  const formData = new FormData();
+  formData.append('name', employee.name);
+  formData.append('email', employee.email);
+  formData.append('password', employee.password);
+  formData.append('address', employee.address);
+  formData.append('salary', employee.salary);
+  formData.append('image', employee.image);
+  formData.append('category_id', employee.category_id);
+
+
+
+  
+
+
+
+  axios.post('http://localhost:3000/auth/add_employee', formData)
+  .then(result => {
+    if (result.data.Status) {
+      navigate("/dashboard/employee");
+    } else {
+      alert(result.data.Error);
+    }
+  })
   .catch(err => console.log(err))
 }
 
@@ -141,6 +165,7 @@ const handleSubmit = (e) => {
               type="file"
               className="form-control rounded-0"
               id="inputGroupFile01"
+              name="image"
             onChange={(e) =>setEmployee({...employee, image: e.target.files[0]})}
 
             />
