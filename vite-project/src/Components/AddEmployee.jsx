@@ -9,7 +9,7 @@ const AddEmployee = () => {
     password: "",
     salary: "",
     address: "",
-    category: "",
+    category_id: "",
     image: "",
   });
   const [category, setCategory] = useState([]);
@@ -125,7 +125,7 @@ const handleSubmit = (e) => {
               Category
             </label>
             <select name="category" id="category" className="form-select"
-            onChange={(e) =>setEmployee({...employee, category:e.target.value})}
+            onChange={(e) =>setEmployee({...employee, category_id:e.target.value})}
             >
               {category.map((c) => {
                 return <option value={c.id}> {c.name}</option>;
