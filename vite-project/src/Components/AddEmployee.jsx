@@ -7,8 +7,8 @@ const AddEmployee = () => {
     name: "",
     email: "",
     password: "",
-    salary: "",
     address: "",
+    salary: "",
     category_id: "",
     image: "",
   });

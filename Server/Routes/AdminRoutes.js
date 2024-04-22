@@ -45,45 +45,85 @@ router.post('/add_category', (req, res)=>{
 })
 
 // image upload 
+// const storage = multer.diskStorage({
+//   destination: (req, file , cb )=>{
+//     cb(null , 'Public/Images')
+//   },
+//   filename:(req, file, cb) => {
+//     cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+//   }
+// })
+
+// const upload = multer({
+//   storage: storage
+// })
+
+
+
+
 const storage = multer.diskStorage({
-  destination: (req, file , cb )=>{
-    cb(null , 'Public/Images')
+  destination: (req, file, cb) => {
+    cb(null, 'Public/Images');
   },
-  filename:(req, file, cb) => {
-    cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
   }
-})
+});
 
 const upload = multer({
   storage: storage
-})
+});
 
 
-router.post('/add_employee',upload.single('image'), (req, res) =>{
-  const  sql = `INSERT INTO employee  
-  (name,email,password, address, salary,image,category_id) 
-    VALUES (?)`;
+// router.post('/add_employee',upload.single('image'), (req, res) =>{
+//   const  sql = `INSERT INTO employee  
+//   (name,email,password, address, salary,image,category_id) 
+//     VALUES (?)`;
 
-    bcrypt.hash(req.body.password , 10 , (err, hash )=>{
-      if(err) return res.json({Status: false, Error: "Query Error"})
-        const values  = [
-            req.body.name,
-            req.body.email,
-            hash,
-            req.body.address,
-            req.body.salary,
-            req.file.filename,
-            req.body.category_id,
+//     bcrypt.hash(req.body.password , 10 , (err, hash )=>{
+//       if(err) return res.json({Status: false, Error: "Query Error"})
+//         const values  = [
+//             req.body.name,
+//             req.body.email,
+//             hash,
+//             req.body.address,
+//             req.body.salary,
+//             req.file.filename,
+//             req.body.category_id,
 
-        ]
+//         ]
 
-        con.query(sql , [values], (err , result) => {
-          if(err) return res.json({Status: false, Error: "Query Error"})
-        return res.json({Status:true, Result:result})
-        } )
-    })
+//         con.query(sql , [values], (err , result) => {
+//           if(err) return res.json({Status: false, Error: "Query Error"})
+//         return res.json({Status:true, Result:result})
+//         } )
+//     })
 
-})
+// })
+
+
+router.post('/add_employee', upload.single('image'), (req, res) => {
+  const sql = `INSERT INTO employee (name, email, password, address, salary, image, category_id) VALUES (?)`;
+
+  bcrypt.hash(req.body.password, 10, (err, hash) => {
+    if (err) return res.json({ Status: false, Error: "Query Error" });
+
+    const values = [
+      req.body.name,
+      req.body.email,
+      hash,
+      req.body.address,
+      req.body.salary,
+      req.file.filename, // Accessing the uploaded filename from req.file
+      req.body.category_id
+    ];
+
+    con.query(sql, [values], (err, result) => {
+      if (err) return res.json({ Status: false, Error: "Query Error" });
+      return res.json({ Status: true, Result: result });
+    });
+  });
+});
 
 
 router.get('/employee', (req, res) => {
