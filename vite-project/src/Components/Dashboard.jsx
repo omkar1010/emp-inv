@@ -12,7 +12,9 @@ const handleLogout = () => {
   axios.get('http://localhost:3000/auth/logout')
   .then(result => {
     if(result.data.Status){
-   navigate('/adminlogin')
+      localStorage.removeItem("valid")
+
+   navigate('/')
     }
   })
 }
@@ -60,7 +62,7 @@ const handleLogout = () => {
                   className="nav-link px-0 align-middle text-white"
                 >
                   <i className="fs-4 bi-columns ms-2 "></i>
-                  <span className="ms-2 d-done d-sm-inline"> Catagory</span>
+                  <span className="ms-2 d-done d-sm-inline"> Category</span>
                 </Link>
               </li>
               <li className="w-100">
