@@ -41,21 +41,23 @@ const Employee = () => {
         Add Employee
       </Link>
       <div className="mt-3">
-        <table className="table">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>Name</th>
               <th>Image</th>
               <th>Email</th>
-              <th>Address</th>
-              <th>Salary</th>
+              <th>Contact Number</th>
+              <th>City</th>
+              
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {employee.map((e) => (
               <tr>
-                <td>{e.name}</td>
+                
+                <td>{e.First_Name}</td>
                 <td>
                   <img
                     src={`http://localhost:3000/Images/` + e.image}
@@ -63,17 +65,24 @@ const Employee = () => {
                   />
                 </td>
                 <td>{e.email}</td>
-                <td>{e.address}</td>
-                <td>{e.salary}</td>
+                <td>{e.Emp_Contact}</td>
+                <td>{e.City}</td>
                 <td>
                   <Link
                     to={`/dashboard/edit_employee/` + e.id}
-                    className="btn btn-info btn-sm me-2"
+                    className="btn btn-primary btn-sm me-2"
                   >
                     Edit
                   </Link>
                   <button
-                    className="btn btn-warning btn-sm"
+                    className="btn btn-info btn-sm me-2"
+                   
+                  >
+                    View
+                  </button>
+                  
+                  <button
+                    className="btn btn-danger btn-sm"
                     onClick={() => handleDelete(e.id)}
                   >
                     Delete

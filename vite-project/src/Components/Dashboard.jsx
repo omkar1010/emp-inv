@@ -52,7 +52,7 @@ const handleLogout = () => {
                 >
                   <i className="fs-4 bi-people ms-2"></i>
                   <span className="ms-2 d-done d-sm-inline">
-                 Employees
+                  Employees
                   </span>
                 </Link>
               </li>
@@ -62,7 +62,25 @@ const handleLogout = () => {
                   className="nav-link px-0 align-middle text-white"
                 >
                   <i className="fs-4 bi-columns ms-2 "></i>
-                  <span className="ms-2 d-done d-sm-inline"> Category</span>
+                  <span className="ms-2 d-done d-sm-inline"> Department</span>
+                </Link>
+              </li>
+              <li className="w-100">
+                <Link
+                  to="/dashboard/asset"
+                  className="nav-link px-0 align-middle text-white"
+                >
+                  <i className="fs-4 bi-columns ms-2 "></i>
+                  <span className="ms-2 d-done d-sm-inline"> Asset</span>
+                </Link>
+              </li>
+              <li className="w-100">
+                <Link
+                  to="/dashboard/asset_category"
+                  className="nav-link px-0 align-middle text-white"
+                >
+                  <i className="fs-4 bi-columns ms-2 "></i>
+                  <span className="ms-2 d-done d-sm-inline"> Asset Category</span>
                 </Link>
               </li>
               <li className="w-100">
@@ -88,7 +106,7 @@ const handleLogout = () => {
         </div>
         <div className="col p-0 m-0 ">
           <div className="p-2 d-flex justify-content-center shadow">
-            <h4> Inventory Management System</h4>
+            <h4> Asset Management System</h4>
           </div>
 
           <Outlet />

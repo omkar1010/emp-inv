@@ -1,14 +1,15 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 
-const Category = () => {
+const AssetsCategory = () => {
+
     const [category, setCategory] = useState([])
 
 
     useEffect(()=>{
-   axios.get('http://localhost:3000/auth/category')
+   axios.get('http://localhost:3000/auth/asset_category')
    .then(result =>{
 if(result.data.Status) {
     setCategory(result.data.Result);
@@ -22,7 +23,7 @@ if(result.data.Status) {
 
 
     const handleDelete =(id) => {
-        axios.delete('http://localhost:3000/auth/delete_department/'+id)
+        axios.delete('http://localhost:3000/auth/delete_assetcategory/'+id)
         .then(result => {
          if(result.data.Status){
        window.location.reload()
@@ -31,14 +32,14 @@ if(result.data.Status) {
          }
         })
        }
-    
+
   return (
     <div className='px-5 mt-3 '>
    <div className='d-flex justify-content-center'>
-   <h3> Department List</h3>
+   <h3> Category List</h3>
    </div>
 
-    <Link to="/dashboard/add_category" className='btn btn-success'> Add Department</Link>
+    <Link to="/dashboard/add-asset_category" className='btn btn-success'>Add Category</Link>
    <div className='mt-3'>
 
     <table className='table'>
@@ -52,8 +53,8 @@ if(result.data.Status) {
                 category.map(c =>(
                     <tr>
                         <td>{c.name}</td>
-                        <td>  <button
-                    className="btn btn-danger btn-sm"
+                        <td> <button
+                    className="btn btn-warning btn-sm"
                     onClick={() => handleDelete(c.id)}
                   >
                     Delete
@@ -69,4 +70,4 @@ if(result.data.Status) {
   )
 }
 
-export default Category
+export default AssetsCategory

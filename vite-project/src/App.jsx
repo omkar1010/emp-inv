@@ -17,7 +17,10 @@ import EmployeeLogin from './Components/EmployeeLogin';
 import EmployeeDetails from './Components/EmployeeDetails';
 import axios from 'axios';
 import PrivateRoute from './Components/PrivateRoute';
-
+import Assets from './Components/Assets';
+import AssetsCategory from './Components/AssetsCategory';
+import AddAssets from './Components/AddAssets';
+import AddAssetsCategory from './Components/AddAssetsCategory';
 function App() {
   
 
@@ -46,6 +49,11 @@ function App() {
 <Route path='/dashboard/employee' element={<Employee/>}></Route>
 <Route path='/dashboard/category' element={<Category/>}></Route>
 <Route path='/dashboard/profile' element={<Profile/>}></Route>
+<Route path='/dashboard/asset' element={<Assets/>}></Route>
+<Route path='/dashboard/add-assets' element={<AddAssets/>}></Route>
+<Route path='/dashboard/asset_category' element={<AssetsCategory/>}></Route>
+<Route path='/dashboard/add-asset_category' element={<AddAssetsCategory/>}></Route>
+
 <Route path='/dashboard/add_category' element={<AddCategory/>}></Route>
 <Route path='/dashboard/add_employee' element={<AddEmployee/>}></Route>
 <Route path='/dashboard/edit_employee/:id' element={<EditEmployee/>}></Route>

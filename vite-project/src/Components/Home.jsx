@@ -31,10 +31,10 @@ const Home = () => {
 
 
   const salaryCount = () => {
-    axios.get('http://localhost:3000/auth/salary_count')
+    axios.get('http://localhost:3000/auth/assetcount')
     .then(result => {
       if(result.data.Status) {
-        setSalary(result.data.Result[0].salaryOFEmp)
+        setSalary(result.data.Result[0].assets)
       }
     })
   }
@@ -100,7 +100,7 @@ const Home = () => {
       </div>
       <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
         <div className='text-center pb-1'>
-          <h4>Salary</h4>
+          <h4>Asset</h4>
         </div>
         <hr />
         <div className='d-flex justify-content-between '>

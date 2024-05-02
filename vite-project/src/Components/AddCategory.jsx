@@ -22,16 +22,16 @@ const AddCategory = () => {
   return (
     <div className="d-flex justify-content-center align-items-center h-75  ">
       <div className="p-3 rounded w-25 border ">
-        <h2>Add Category </h2>
+        <h3>Add department </h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="category">
-              <strong>Cagegory:</strong>
+              <strong>Department:</strong>
             </label>
             <input
               type="text"
-              name="category"
-              placeholder="Enter Category "
+              name="department"
+              placeholder="Enter department name "
               className="form-control rounded-0"
               onChange={(e) => setCategory(e.target.value)}
             />
